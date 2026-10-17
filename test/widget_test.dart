@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:syzygy_base/di/app_module.dart';
-import 'package:syzygy_base/main.dart';
+import 'package:syzygy_example/di/app_module.dart';
+import 'package:syzygy_example/features/auth/data/demo_auth_repository.dart';
+import 'package:syzygy_example/main.dart';
 
 void main() {
   const secureStorageChannel = MethodChannel(
@@ -64,16 +65,16 @@ void main() {
 
     await tester.enterText(
       find.widgetWithText(TextFormField, 'Email'),
-      'jane@example.com',
+      DemoCredentials.email,
     );
     await tester.enterText(
       find.widgetWithText(TextFormField, 'Password'),
-      'password123',
+      DemoCredentials.password,
     );
     await tester.tap(find.widgetWithText(FilledButton, 'Sign in'));
     await tester.pumpAndSettle();
 
     expect(find.text('Welcome!'), findsOneWidget);
-    expect(find.text('SyzygyBase'), findsWidgets);
+    expect(find.text('Syzygy Example'), findsWidgets);
   });
 }

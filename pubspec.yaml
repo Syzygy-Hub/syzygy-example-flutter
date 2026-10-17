@@ -1,10 +1,10 @@
-name: syzygy_base
-description: 'Syzygy Base — starter template that wires all 5 Syzygy layers (Foundation, Core, Services, AI, UI) via the Core DI Container.'
+name: syzygy_example
+description: 'Syzygy Example — starter template that wires all 5 Syzygy layers (Foundation, Core, Services, AI, UI) via the Core DI Container.'
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 3.0.0+1
+version: 1.0.0+1
 
 environment:
   sdk: '>=3.9.0 <4.0.0'
@@ -15,11 +15,11 @@ dependencies:
     sdk: flutter
 
   # Syzygy layers
-  syzygy_foundation_flutter: ^3.0.0
-  syzygy_core_flutter: ^3.0.0
-  syzygy_services_flutter: ^3.0.0
-  syzygy_ai_flutter: ^3.0.0
-  syzygy_ui_flutter: ^3.0.0
+  syzygy_foundation_flutter: 3.0.0
+  syzygy_core_flutter: 3.0.0
+  syzygy_services_flutter: 3.0.0
+  syzygy_ai_flutter: 3.0.0
+  syzygy_ui_flutter: 3.0.0
 
   # State management
   flutter_bloc: ^9.1.1

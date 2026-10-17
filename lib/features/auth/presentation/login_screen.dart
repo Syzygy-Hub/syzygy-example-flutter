@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-// TokenAuthProvider is defined in syzygy_services_flutter; imported here for
-// the DI resolve call. app_module.dart already imports syzygy_foundation_flutter
-// for StorageProvider, but login_screen.dart resolves the concrete service type.
-import 'package:syzygy_services_flutter/syzygy_services_flutter.dart'
-    show TokenAuthProvider;
 import 'package:syzygy_ui_flutter/syzygy_ui_flutter.dart';
 
 import '../../../core/extensions/context_extensions.dart';
 import '../../../di/app_module.dart';
+import '../domain/auth_use_case.dart';
 import 'login_cubit.dart';
 import 'login_state.dart';
 
@@ -23,7 +19,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => LoginCubit(appContainer.resolve<TokenAuthProvider>()),
+      create: (_) => LoginCubit(appContainer.resolve<AuthUseCase>()),
       child: _LoginView(onLoginSuccess: onLoginSuccess),
     );
   }
