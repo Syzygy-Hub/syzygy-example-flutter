@@ -8,6 +8,7 @@ import 'package:syzygy_services_flutter/syzygy_services_flutter.dart';
 
 import '../di/app_module.dart';
 import '../features/auth/presentation/login_screen.dart';
+import '../features/features/presentation/features_screen.dart';
 import '../features/home/presentation/home_screen.dart';
 
 /// Route path constants, kept in one place so string literals never leak
@@ -15,6 +16,7 @@ import '../features/home/presentation/home_screen.dart';
 abstract final class AppRoutes {
   static const login = '/login';
   static const home = '/';
+  static const features = '/features';
 }
 
 /// App-wide [GoRouter] configuration.
@@ -46,6 +48,9 @@ abstract final class AppRouter {
         path: AppRoutes.home,
         name: 'home',
         builder: (context, state) => HomeScreen(
+          signedIn: appContainer.resolve<TokenAuthProvider>().state
+              is Authenticated,
+          onOpenFeatures: () => context.push(AppRoutes.features),
           onLogout: () {
             final authProvider = appContainer.resolve<TokenAuthProvider>();
             authProvider.signOut();
@@ -53,6 +58,11 @@ abstract final class AppRouter {
             if (ctx != null) GoRouter.of(ctx).go(AppRoutes.login);
           },
         ),
+      ),
+      GoRoute(
+        path: AppRoutes.features,
+        name: 'features',
+        builder: (context, state) => const FeaturesScreen(),
       ),
     ],
     errorBuilder: (context, state) => Scaffold(

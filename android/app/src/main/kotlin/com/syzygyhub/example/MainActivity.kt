@@ -1,4 +1,4 @@
-package com.syzygyhub.base
+package com.syzygyhub.example
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.0.0] - 2026-10-16
+
+### Added
+- Home screen showing the signed-in state, with buttons to open Features and to sign out
+- Features screen (`/features`) demonstrating each layer with public APIs and no keys: Foundation (`SyzygyID`), Core (`ConfigRegistry`, `FeatureFlag`), Services (`StorageProvider`), AI (`LLMProvider` with an offline provider written in the app) and UI (`PrimaryButton`, `CardView`, `ProgressBar`)
+- Offline `LLMProvider` implementation in the app (`OfflineLLMProvider`)
+
+### Changed
+- Syzygy packages pinned to exactly 3.0.0 in `pubspec.yaml` (Foundation, Core, Services, AI, UI)
+- App renamed from SyzygyBase to Syzygy Example (package `syzygy_example`, application ID `com.syzygyhub.example`)
+
 ## [3.0.0] - 2026-10-06
 
 ### Added

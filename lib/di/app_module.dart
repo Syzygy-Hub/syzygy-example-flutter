@@ -5,6 +5,18 @@ import 'package:syzygy_foundation_flutter/syzygy_foundation_flutter.dart'
     show StorageProvider;
 import 'package:syzygy_services_flutter/syzygy_services_flutter.dart';
 
+import '../features/auth/data/auth_repository.dart';
+import '../features/auth/data/demo_auth_repository.dart';
+import '../features/auth/domain/auth_use_case.dart';
+
+/// Selects the login repository. On by default because this example is not
+/// connected to a backend. Build with `--dart-define=SYZYGY_DEMO_LOGIN=false`
+/// to use [AuthRepositoryImpl] instead.
+const bool useDemoLogin = bool.fromEnvironment(
+  'SYZYGY_DEMO_LOGIN',
+  defaultValue: true,
+);
+
 /// App-wide dependency injection container using Core's [Container].
 ///
 /// Registers all Syzygy layer services as singletons. Call [initDI] once
@@ -67,6 +79,21 @@ Future<void> initDI() async {
       networkClient: c.resolve<HttpNetworkClient>(),
       // refreshEndpoint: 'https://api.example.com/auth/refresh',
     ),
+  );
+
+  appContainer.register<AuthRepository>(
+    Lifetime.singleton,
+    (c) => useDemoLogin
+        ? DemoAuthRepository(c.resolve<TokenAuthProvider>())
+        : AuthRepositoryImpl(
+            networkClient: c.resolve<HttpNetworkClient>(),
+            authProvider: c.resolve<TokenAuthProvider>(),
+          ),
+  );
+
+  appContainer.register<AuthUseCase>(
+    Lifetime.singleton,
+    (c) => AuthUseCase(c.resolve<AuthRepository>()),
   );
 
   // ── EventBus ──────────────────────────────────────────────────────────────

@@ -1,13 +1,21 @@
-layer: base
-version: 3.0.0
-syzygy_foundation: "3.0.0"
-syzygy_core: "3.0.0"
-syzygy_services: "3.0.0"
-syzygy_ai: "3.0.0"
-syzygy_ui: "3.0.0"
-contracts:
-  - foundation
-  - core
-  - services
-  - ai
-  - ui
+name: syzygy-example-flutter
+type: example
+platform: flutter
+language: dart
+package_manager: pub.dev
+license: MIT
+version: 1.0.0
+syzygy_foundation: ">=3.0.0"
+description: "Reference Flutter app that composes the Syzygy layers with go_router and a demo login"
+demonstrates: [foundation, ui, core, services, ai, base]
+depends_on:
+  - name: syzygy-foundation-flutter
+    version_constraint: ">=3.0.0"
+  - name: syzygy-core-flutter
+    version_constraint: ">=3.0.0"
+  - name: syzygy-services-flutter
+    version_constraint: ">=3.0.0"
+  - name: syzygy-ai-flutter
+    version_constraint: ">=3.0.0"
+  - name: syzygy-ui-flutter
+    version_constraint: ">=3.0.0"

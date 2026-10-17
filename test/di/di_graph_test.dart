@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:syzygy_base/di/app_module.dart';
+import 'package:syzygy_example/di/app_module.dart';
 import 'package:syzygy_core_flutter/syzygy_core_flutter.dart';
 // StorageProvider is a Foundation contract not re-exported by the higher layers.
 import 'package:syzygy_foundation_flutter/syzygy_foundation_flutter.dart'
