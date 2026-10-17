@@ -1,4 +1,4 @@
-[![Flutter](https://img.shields.io/badge/Flutter-Dart-7F77DD?style=flat)](https://flutter.dev/) [![Dart](https://img.shields.io/badge/Dart-3.9-1D9E75?logo=dart&logoColor=white&style=flat)](https://dart.dev) [![CI](https://img.shields.io/github/actions/workflow/status/Syzygy-Hub/syzygy-example-flutter/ci.yml?label=ci&style=flat)](https://github.com/Syzygy-Hub/syzygy-example-flutter/actions/workflows/ci.yml) [![Version](https://img.shields.io/badge/version-1.0.0-D85A30?style=flat)](https://github.com/Syzygy-Hub/syzygy-example-flutter/releases) [![License](https://img.shields.io/badge/License-MIT-green?style=flat)](LICENSE)
+[![Flutter](https://img.shields.io/badge/Flutter-Dart-7F77DD?style=flat)](https://flutter.dev/) [![Dart](https://img.shields.io/badge/Dart-3.9-1D9E75?logo=dart&logoColor=white&style=flat)](https://dart.dev) [![CI](https://img.shields.io/github/actions/workflow/status/Syzygy-Hub/syzygy-example-flutter/ci.yml?label=ci&style=flat)](https://github.com/Syzygy-Hub/syzygy-example-flutter/actions/workflows/ci.yml) [![Version](https://img.shields.io/badge/version-3.0.0-D85A30?style=flat)](https://github.com/Syzygy-Hub/syzygy-example-flutter/releases) [![License](https://img.shields.io/badge/License-MIT-green?style=flat)](LICENSE)
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Syzygy-Hub/.github/main/brand/assets/banners/syzygy-banner-dark-1200.png">
@@ -13,7 +13,7 @@ A Flutter example app (Dart) that composes all five Syzygy layers and Base throu
 
 ## Purpose
 
-This example shows how to compose the Syzygy layers in a Flutter app: one DI container, one GoRouter configuration and a demo login that lets a reader reach every screen without a backend. It is a reference for wiring Foundation, Core, Services, AI and UI together on iOS and Android.
+This example shows how to compose the Syzygy layers in a Flutter app: one DI container, one GoRouter configuration and a demo login that lets a reader reach every screen. It is a reference for wiring Foundation, Core, Services, AI and UI together on iOS and Android.
 
 ## Layers demonstrated
 
@@ -37,7 +37,7 @@ Login, Home and Features are routes in one GoRouter configuration.
 
 ## Demo login
 
-This example is not connected to a backend, so it signs in with an offline demo account by default.
+This example is not connected to a backend. The demo login ships in all build types, including release builds. It is not real authentication: it accepts one fixed account and keeps the session in memory only. It is the only working login path in this release.
 
 | Field | Value |
 |---|---|
@@ -48,9 +48,9 @@ These are demo values only, not secrets. The flag is `useDemoLogin` in `lib/di/a
 
 ## Not included
 
-- A backend. Login uses the demo account only. Registration, token refresh and real API calls are not implemented.
+- A backend. The demo login is the only working login path in this release. Registration, token refresh and real API calls are not implemented.
 - A production AI provider. The AI demo answers from the offline provider in the app.
-- UI tests. This release runs only unit tests.
+- UI tests, instrumented tests and native smoke builds. They are not part of this release's CI runs.
 
 ## Requirements
 
@@ -66,36 +66,32 @@ These are demo values only, not secrets. The flag is `useDemoLogin` in `lib/di/a
    git clone https://github.com/Syzygy-Hub/syzygy-example-flutter.git
    cd syzygy-example-flutter
    ```
-2. Preview the rename. This is a dry run and changes nothing:
-   ```sh
-   ./setup.sh
-   ```
-3. Apply the rename. It sets the app name to `Syzygy Example` and the identifier to `com.syzygyhub.example`. Commit your changes before this step:
-   ```sh
-   ./setup.sh --apply
-   ```
-4. Fetch dependencies:
+2. Fetch dependencies:
    ```sh
    flutter pub get
    ```
-5. Run the app:
+3. Run the app:
    ```sh
    flutter run
    ```
-6. Run the checks:
+4. Run the checks:
    ```sh
-   flutter analyze --fatal-infos
+   flutter analyze --fatal-warnings
    flutter test
-   flutter build apk --debug
    ```
 
 ## Library compatibility
 
-This release is built against Syzygy 3.0.0. The five layers are pinned to exactly 3.0.0 in `pubspec.yaml`. The `depends_on` constraints in `syzygy.yml` are `>=3.0.0`. The compatibility table is in [example-apps-standard.md](https://github.com/Syzygy-Hub/.github/blob/main/engineering/standards/example-apps-standard.md#4-compatibility-table).
+This release is built against Syzygy 3.0.0. The five layers (`syzygy_foundation_flutter`, `syzygy_core_flutter`, `syzygy_services_flutter`, `syzygy_ai_flutter`, `syzygy_ui_flutter`) are pinned to exactly 3.0.0 in `pubspec.yaml`. The `depends_on` constraints in `syzygy.yml` are `>=3.0.0`. The compatibility table is in [example-apps-standard.md](https://github.com/Syzygy-Hub/.github/blob/main/engineering/standards/example-apps-standard.md#4-compatibility-table).
+
+| Example release | Foundation | Core | Services | AI | UI | Status |
+|---|---|---|---|---|---|---|
+| 3.0.0 | 3.0.0 | 3.0.0 | 3.0.0 | 3.0.0 | 3.0.0 | Current |
+| 1.0.0 | 3.0.0 | 3.0.0 | 3.0.0 | 3.0.0 | 3.0.0 | Previous release |
 
 ## Versioning and release
 
-This example versions independently of the Syzygy libraries. Releases are tagged with bare strict semver, for example `1.0.0`, with no `v` prefix. Each tag creates a GitHub Release from the matching CHANGELOG section. Nothing is published to a registry.
+This example versions independently of the Syzygy libraries. Releases are tagged with bare strict semver, for example `3.0.0`, with no `v` prefix. The release workflow creates a GitHub Release from the matching CHANGELOG section. Nothing is published to a registry.
 
 ## Contributing
 
